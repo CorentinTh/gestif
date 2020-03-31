@@ -3,13 +3,41 @@
 <head>
     <meta charset="utf-8">
     <title>Example App</title>
-    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link rel="stylesheet" href="/styles/mustard-ui.min.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
-<body>
+<body class="section-secondary">
+
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="/">Gest'If</a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="/students">Etudiants</a></li>
+            <li><a href="/about">A propos</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="row">
-    <div class="col col-sm-6 col-sm-offset-3">
+    <div class="col col-lg-6 col-lg-offset-3 col-sm-12">
+
+        <div>
+            {{#if messages.info}}<p style="margin: 15px" class="alert alert-info">{{messages.info}}</p>{{/if}}
+            {{#if messages.success}}<p style="margin: 15px" class="alert alert-success">{{messages.success}}</p>{{/if}}
+            {{#if messages.danger}}<p style="margin: 15px" class="alert alert-danger">{{messages.danger}}</p>{{/if}}
+            {{#if messages.warning}}<p style="margin: 15px" class="alert alert-info">{{messages.warning}}</p>{{/if}}
+
+        </div>
+
+
+
         {{{body}}}
+
     </div>
 </div>
 

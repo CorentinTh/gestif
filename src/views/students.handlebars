@@ -1,0 +1,66 @@
+<ul class="breadcrumbs">
+    <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+    <li>Etudiants</li>
+</ul>
+
+<div class="card">
+<h1>Liste des étudiants</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Nom</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+<tbody>
+{{#each students}}
+    <tr>
+        <td>{{this.id}}</td>
+        <td><a href="/students/{{this.id}}">{{this.firstname}} {{this.lastname}}</a></td>
+        <td>
+            <a href="/students/{{this.id}}" class="button button-success ">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+{{/each}}
+</tbody>
+
+</table>
+
+
+<ul class="pagination">
+    {{#if (gt correctPage 1)}}
+        <li><a href="/students?page={{math correctPage "-" 1}}">Prev</a></li>
+        {{#if (gt correctPage 2)}}
+            <li><a href="/students?page=1">1</a></li>
+        {{/if}}
+
+        {{#if (gt correctPage 3)}}
+            <li><a href="#">...</a></li>
+        {{/if}}
+
+            <li><a href="/students?page={{math correctPage "-" 1}}">{{math correctPage "-" 1}}</a></li>
+    {{/if}}
+
+    <li><a class="active" href="#">{{{page}}}</a></li>
+
+
+    {{#if (lt correctPage 10)}}
+        <li><a href="/students?page={{math correctPage "+" 1}}">{{math correctPage "+" 1}}</a></li>
+
+
+        {{#if (lt correctPage 8)}}
+            <li><a href="#">...</a></li>
+        {{/if}}
+
+        {{#if (lt correctPage 9)}}
+            <li><a href="/students?page=10">10</a></li>
+        {{/if}}
+        <li><a href="/students?page={{math correctPage "+" 1}}">Next</a></li>
+
+    {{/if}}
+</ul>
+</div>

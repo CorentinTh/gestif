@@ -1,0 +1,57 @@
+<ul class="breadcrumbs">
+    <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+    <li><a href="/students">Etudiants</a></li>
+    <li>{{student.firstname}} {{student.lastname}}</li>
+</ul>
+
+<div class="card">
+
+    <h1>{{student.firstname}} {{student.lastname}}</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Matière</th>
+            <th>Note</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each marks}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{this.course}}</td>
+                <td>{{this.mark}}/20</td>
+                <td>
+                    <a href="/students/{{../student.id}}/notes/delete/{{this.id}}" class="button-danger button">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+
+    </table>
+    <br>
+    <br>
+    <h4>Ajouter un note:</h4>
+    <form action="/students/{{student.id}}/notes" method="post">
+        <div class="mark-form">
+            <select name="course">
+                <option selected value="Statistiques">Statistiques</option>
+                <option value="Fouille de données">Fouille de données</option>
+                <option value="Sécurité et réseaux">Sécurité et réseaux</option>
+                <option value="Management">Management</option>
+                <option value="Finances">Finances</option>
+                <option value="Anglais">Anglais</option>
+                <option value="Sport">Sport</option>
+                <option value="Communication">Communication</option>
+                <option value="Génie Logiciel">Génie Logiciel</option>
+            </select>
+            <input type="number" placeholder="Note /20" name="mark">
+            <button type="submit" class="button-success button">Ajouter</button>
+        </div>
+        <input type="hidden" name="studentId" value="{{student.id}}">
+    </form>
+</div>

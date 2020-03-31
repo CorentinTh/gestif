@@ -1,0 +1,26 @@
+<div class="card">
+
+    <h1>Bonjour</h1>
+    <br>
+
+    <p>
+        Bienvenue sur <strong>GESTIF</strong> l'application de gestion des notes des étudiants en IF de l'INSA de Lyon.
+        Ici vous pouvez ajouter ou supprimer les notes des étudiants.
+    </p>
+    <br>
+    {{#if isAuthenticated}}
+        <div style="text-align: center">
+            <a href="/students" class="button button-success">Liste des Etudiants</a>
+        </div>
+    {{/if}}
+
+    {{#unless isAuthenticated}}
+        <p>
+            Vous n'etes pas connecté, authentifier-vous pour continuer.
+        </p>
+        <div style="text-align: center">
+            <a href="/login" class="button button-success">Se connecter</a>
+        </div>
+    {{/unless}}
+</div>
+
