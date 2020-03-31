@@ -12,7 +12,19 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    res.redirect('/students');
+    const {login, password} = req.body;
+
+    const user = authService.checkUserWithCredentials(login, password);
+
+    if(user){
+        req.session.user = user;
+        req.session.isAuthenticated = true;
+
+        res.redirect('/students');
+    }else{
+        res.json(user);
+    }
+
 });
 
 module.exports = router;
