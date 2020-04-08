@@ -12,34 +12,36 @@ const resetDB = () => {
 
     db.prepare(`
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY, 
-    login TEXT NOT NULL, 
+    id INTEGER PRIMARY KEY,
+    login TEXT NOT NULL,
     password TEXT NOT NULL
 );`).run();
 
     db.prepare(`
 CREATE TABLE IF NOT EXISTS students (
-    id INTEGER PRIMARY KEY, 
-    firstname TEXT NOT NULL, 
+    id INTEGER PRIMARY KEY,
+    firstname TEXT NOT NULL,
     lastname TEXT NOT NULL
 );`).run();
 
     db.prepare(`
 CREATE TABLE IF NOT EXISTS marks (
-    id INTEGER PRIMARY KEY, 
-    mark INTEGER NOT NULL, 
+    id INTEGER PRIMARY KEY,
+    mark INTEGER NOT NULL,
     studentsId INTEGER NOT NULL,
     course TEXT NOT NULL,
     FOREIGN KEY(studentsId) REFERENCES students(id)
 );
 `).run();
 
-    db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('test', 'test');
+    db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('test', 'test-mdp');
+    db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('corentinth', 'corentinth-mdp');
+    db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('admin', 'mdp-mdp');
 
     db.prepare(`INSERT INTO students (firstname, lastname) VALUES ${users.map(u =>`('${u.firstname}', '${u.lastname}')`).join(', ')}`).run();
 
     db.prepare(`
-INSERT INTO marks (course, mark, studentsId) VALUES 
+INSERT INTO marks (course, mark, studentsId) VALUES
 ${users.map((u, i) => Array(Math.floor(Math.random()*5) +3).fill(0).map(() => `('${randomCourse()}', ${Math.floor(Math.random()*20)}, ${i+1})`).join(', ')).join(', ')}
 `).run();
 };
