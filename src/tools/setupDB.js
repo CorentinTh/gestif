@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS marks (
 
     db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('test', 'test-mdp');
     db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('corentinth', 'corentinth-mdp');
+    db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('professeurA', 'professeurA-mdp');
     db.prepare(`INSERT INTO users (login, password) VALUES (?, ?)`).run('admin', 'mdp-mdp');
 
     db.prepare(`INSERT INTO students (firstname, lastname) VALUES ${users.map(u =>`('${u.firstname}', '${u.lastname}')`).join(', ')}`).run();
