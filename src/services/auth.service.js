@@ -10,7 +10,7 @@ const authGuard = (req, res, next) =>{
     if(req.session.isAuthenticated){
         next();
     }else{
-        res.redirect(`/login?redirect=${req.originalUrl}`);
+        res.redirect(`/login?redirect=${encodeURIComponent(req.originalUrl)}`);
     }
 };
 
