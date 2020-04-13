@@ -22,7 +22,7 @@
             <tr>
                 <td>{{@index}}</td>
                 <td>{{this.course}}</td>
-                <td>{{this.mark}}/20</td>
+                <td>{{{this.mark}}}/20</td>
                 <td>
                     <a href="/students/{{../student.id}}/notes/delete/{{this.id}}" class="button-danger button">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -49,7 +49,7 @@
                 <option value="Communication">Communication</option>
                 <option value="Génie Logiciel">Génie Logiciel</option>
             </select>
-            <input type="number" placeholder="Note /20" name="mark">
+            <input type="text" placeholder="Note /20" name="mark">
             <button type="submit" class="button-success button">Ajouter</button>
         </div>
         <input type="hidden" name="studentId" value="{{student.id}}">
