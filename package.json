@@ -19,4 +19,7 @@
     "express-session": "^1.17.0",
     "morgan": "^1.10.0"
   }
+  "engines": {
+    "node": "12.x"
+  }
 }
